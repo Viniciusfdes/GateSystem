@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Quicksand:wght@300&display=swap');
+
+/*Código no geral*/
+* {
+   box-sizing: border-box;
+   font-family: 'Noto Sans Mono', monospace;
+   font-family: 'Quicksand', sans-serif;
+   color: #333333;
+}
+
+header {
+   background-color: white;
+   min-height: 100px;
+   box-shadow: 1px 0px 90px #E0E0E0;
+   width: 280px;
+   height: 752px;
+}
+
+body {
+   background: #fafafa;
+   height: 100vh;
+   width: 100%;
+   justify-content: center;
+   color: #333333;
+}
+
+main{
+   margin-left: 340px;
+   margin-right: 60px;
+}
+
+h1{
+   font-size: 30px;
+   font-weight: bold;
+   padding-bottom: 24px;
+   color:#333333;
+}
+
+h5{
+   font-size: 30px;
+   font-weight: bold;
+   margin-top: 90px;
+   color: #333333;
+}
+
+.infos-usuario{
+   align-items: center;
+   flex-direction: column;
+}
+
+.nav-item{
+   align-items: center;
+   flex-direction: column;
+}
+
+.nav-item:hover{
+
+   text-decoration: none;
+   background-color: #E7E7E7;
+}
+
+.nav-item:active{
+   background-color: #E0E0E0;
+}
+
+/*Como adicionar item selecionado
+.nav-item{
+   background-color: #E0E0E0;
+}*/
+
+
+.barraUP{
+   width: 100%;
+   height: 64px;
+   background-color: #C4C4C4;
+   margin-bottom: 40px;
+}
+
+.barra-lateral {
+   width: 280px;
+   height: 752px;
+   margin: 0px;
+   background-color: white;
+   min-height: 100px;
+   box-shadow: 1px 0px 30px #E0E0E0;
+}
+
+.img-adm {
+   width: 64px;
+   height: 64px;
+}
+
+.nav-tabs > .nav-item:hover{
+   background-color: #C4C4C4;
+}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'crudUser/css/styleUser.css' %}">
+{% endblock %}
+{% block 'title' %}
+<title>NADIC | USER</title>
+{% endblock %}
+
+{% block 'body' %}
+<ul class="nav nav-tabs" style="margin-bottom: 24px;">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'UserList' %}">Usuário</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
+    </li>
+</ul>
+
+<div>
+    <div class="quadro" style="float:right;">
+        <form class="d-flex">
+            <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" style="width: 200px;">
+            <button type="button" class="btn btn-secondary" style="margin-right:8px; margin-left: 8px;">Ir</button>
+            <a href="{% url 'UserAdd' %}" class="btn btn-secondary">Cadastrar</a>
+        </form>
+    </div>
+    <h5>Usuário</h5>
+</div>
+
+<div class="container container-table">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive table-scroll">
+                <table class="table table-striped">
+                    <thead class="text-center">
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Matrícula</th>
+                            <th>Email</th>
+                            <th>Telefone</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.cpf }}</td>
+                            <td>{{ user.enrollment }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.phone }}</td>
+                            <td>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="{% url 'UserEdit' user.id %}">
+                                                <img src="{% static 'crudUser/img/EditSVG.svg' %}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{% url 'UserRemove' user.id %}"
+                                                onclick="return confirm('Tem certeza que deseja excluir esse usuário?')">
+                                                <img src="{% static 'crudUser/img/TrashSVG.svg' %}" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<nav aria-label="...">
+    <ul class="pagination" style="margin-top: 40px;">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" style="background-color:#E7E7E7; color: #BABABA;">Anterior</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#"
+                style="background-color:#E7E7E7; color: #BABABA; border-color: white;">1</a></li>
+        <li class="page-item"><a class="page-link" href="#" style="color:#333333;">2 <span class="sr-only"></span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#" style="color:#333333;">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" style="color:#333333;">Próximo</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}

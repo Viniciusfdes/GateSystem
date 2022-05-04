@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'crudUser/css/styleUser.css' %}">
+{% endblock %}
+{% block 'title' %}
+<title>NADIC | USER_ADD</title>
+{% endblock %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="{% static 'crudUser/js/user_add.js'%}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#id_cpf").mask("999.999.999-99");
+    });
+</script>
+{% block 'body' %}
+<ul class="nav nav-tabs" style="margin-bottom: 24px;">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'UserList' %}">Usuário</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
+    </li>
+</ul>
+
+<h5>Cadastrar Usuário</h5>
+<hr>
+<form action="{% url 'UserAdd' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <button type="submit" class="btn btn-secondary btn-lg">SALVAR</button>
+    <button type="reset" class="btn btn-secondary btn-lg">LIMPAR</button>
+    <a href="{% url 'UserList' %}" class="btn btn-secondary btn-lg">VOLTAR</a>
+</form>
+
+{% endblock %}

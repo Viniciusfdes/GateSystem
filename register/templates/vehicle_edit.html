@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'crudVehicle/css/styleVeh.css' %}">
+{% endblock %}
+
+{% block 'title' %}
+<title>NADIC | VEHICLE_EDIT</title>
+{% endblock %}
+
+{% block 'body' %}
+<div class="card">
+    <div class="card-body">
+        <h4>Editar veículo</h4>
+        <hr>
+        <form action="{% url 'VehEdit' veh_obj.id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <button type="submit" class="btn btn-secondary">SALVAR</button>
+            <a href="{% url 'VehList' %}" class="btn btn-secondary">CANCELAR</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'crudUser/css/styleUser.css' %}">
+{% endblock %}
+{% block 'title' %}
+<title>NADIC | USER_EDIT</title>
+{% endblock %}
+
+{% block 'body' %}
+<ul class="nav nav-tabs" style="margin-bottom: 24px;">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'UserList' %}">Usuário</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
+    </li>
+</ul>
+
+<h5>Editar Usuário</h5>
+<hr>
+<form action="{% url 'UserEdit' user_obj.id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <button type="submit" class="btn btn-secondary">SALVAR</button>
+    <a href="{% url 'UserList' %}" class="btn btn-secondary">CANCELAR</a>
+</form>
+</div>
+</div>
+{% endblock %}
