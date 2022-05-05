@@ -96,8 +96,6 @@ h5{
 
 .container-table {
    margin-top: 30px;
-   padding-left: 0px !important;
-   padding-right: 0px !important;
 }
 
 .table-scroll {
@@ -115,4 +113,8 @@ form {
 
 input {
    width: 40px;
+}
+
+.form-group {
+   margin-bottom: 30px;
 }

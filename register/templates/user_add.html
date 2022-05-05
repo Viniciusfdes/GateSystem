@@ -7,13 +7,7 @@
 {% block 'title' %}
 <title>NADIC | USER_ADD</title>
 {% endblock %}
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.2.6.min.js"></script>
-<script type="text/javascript" src="{% static 'crudUser/js/user_add.js'%}"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#id_cpf").mask("999.999.999-99");
-    });
-</script>
+
 {% block 'body' %}
 <ul class="nav nav-tabs" style="margin-bottom: 24px;">
     <li class="nav-item">
@@ -28,19 +22,46 @@
 <hr>
 <form action="{% url 'UserAdd' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {{message.tags}}">
-        {{message}}
-    </div>
-    {% endfor %}
-    {% endif %}
+    <div class="container">
+        <div class="row form-group">
+            <div class="col col-sm-4">
+                <label for="id_username">USUÁRIO:</label>
+                {{ form.username}}
+            </div>
+            <div class="col col-sm-4">
+                <label for="id_cpf">CPF:</label>
+                {{ form.cpf}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-sm-4">
+                <label for="id_enrollment">MATRÍCULA:</label>
+                {{ form.enrollment}}
+            </div>
+            <div class="col col-sm-4">
+                <label for="id_email">EMAIL:</label>
+                {{ form.email}}
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col col-sm-4">
+                <label for="id_phone">TELEFONE:</label>
+                {{ form.phone}}
+            </div>
+        </div>
 
-    <button type="submit" class="btn btn-secondary btn-lg">SALVAR</button>
-    <button type="reset" class="btn btn-secondary btn-lg">LIMPAR</button>
-    <a href="{% url 'UserList' %}" class="btn btn-secondary btn-lg">VOLTAR</a>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert {{message.tags}}">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <button type="submit" class="btn btn-secondary btn-lg">SALVAR</button>
+        <button type="reset" class="btn btn-secondary btn-lg">LIMPAR</button>
+        <a href="{% url 'UserList' %}" class="btn btn-secondary btn-lg">VOLTAR</a>
 </form>
 
 {% endblock %}

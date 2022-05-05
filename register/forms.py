@@ -18,9 +18,9 @@ class FormVeh(forms.ModelForm):
         model = vehicle
         exclude = () 
         widgets = {
-            'brand': forms.TextInput(attrs={'class': 'form-control', 'autofocus': ''}),
-            'model': forms.TextInput(attrs={'class': 'form-control'}),
-            'plate': forms.TextInput(attrs={'class': 'form-control'}),
-            'color': forms.TextInput(attrs={'class': 'form-control'}),
-            'user': forms.Select(attrs={'class': 'form-select'})
+            'brand': forms.TextInput(attrs={'class': 'form-control', 'autofocus': '', 'style': 'width: 300px'}),
+            'model': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px'}),
+            'plate': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px'}),
+            'color': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 300px'}),
+            'user': forms.Select(attrs={'class': 'form-select', 'style': 'width: 300px'})
         }

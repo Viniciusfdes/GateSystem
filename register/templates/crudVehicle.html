@@ -20,20 +20,16 @@
 
 <div>
     <div class="quadro" style="float:right;">
-        <form class="d-flex">
-            <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" style="width: 200px;">
-            <button type="button" class="btn btn-secondary" style="margin-right:8px; margin-left: 8px;">Ir</button>
-            <a href="{% url 'VehAdd' %}" class="btn btn-secondary">Cadastrar</a>
-        </form>
+        <a href="{% url 'VehAdd' %}" class="btn btn-secondary">Cadastrar</a>
     </div>
     <h5>Veículo</h5>
 </div>
 
 <div class="container container-table">
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row" style="width: 900px; height: 400px;margin: 0px;">
+        <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
             <div class="table-responsive table-scroll">
-                <table class="table table-striped">
+                <table id="bootstrapdatatable" class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -82,19 +78,5 @@
 </div>
 </div>
 </div>
-<nav aria-label="...">
-    <ul class="pagination" style="margin-top: 40px;">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" style="background-color:#E7E7E7; color: #BABABA;">Anterior</a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#"
-                style="background-color:#E7E7E7; color: #BABABA; border-color: white;">1</a></li>
-        <li class="page-item"><a class="page-link" href="#" style="color:#333333;">2 <span class="sr-only"></span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#" style="color:#333333;">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" style="color:#333333;">Próximo</a>
-        </li>
-    </ul>
-</nav>
+
 {% endblock %}

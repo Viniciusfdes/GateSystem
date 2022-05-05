@@ -26,7 +26,6 @@ def user_add(request):
             user_enrollment = request.POST.get('enrollment')
             user_email = request.POST.get('email')
             user_phone = request.POST.get('phone')
-            print(f"{user_username} | {user_cpf} | {user_enrollment} | {user_email} | {user_phone}")
 
             #Verifica preenchimento dos campos
             if len(user_username.strip()) == 0 or len(user_cpf.strip()) == 0 or len(user_enrollment.strip()) == 0 or len(user_email.strip()) == 0 or len(user_phone.strip()) == 0:
