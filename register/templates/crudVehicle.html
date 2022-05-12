@@ -1,20 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'head' %}
-<link rel="stylesheet" href="{% static 'crudVehicle/css/styleVeh.css' %}">
-{% endblock %}
-{% block 'title' %}
-<title>NADIC | VEHICLE</title>
-{% endblock %}
+{% block 'head' %}<link rel="stylesheet" href="{% static 'crudVehicle/css/styleVeh.css' %}">{% endblock %}
+{% block 'title' %}<title>NADIC | VEHICLE</title>{% endblock %}
 
 {% block 'body' %}
 <ul class="nav nav-tabs" style="margin-bottom: 24px;">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'UserList' %}">Usuário</a>
+        <a class="nav-link" href="{% url 'UserList' %}">Usuário</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
     </li>
 </ul>
 
