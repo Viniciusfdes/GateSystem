@@ -34,7 +34,6 @@ h1{
    font-weight: bold;
    padding-bottom: 24px;
    color:#333333;
-   margin-top: 30px;
 }
 
 h5{
@@ -112,11 +111,6 @@ form {
    padding-bottom: 50px;
 }
 
-input#id_usarname.form-control {
-   width: 600px;
-}
-
 .form-group {
    margin-bottom: 40px;
 }
-

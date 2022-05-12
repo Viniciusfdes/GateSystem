@@ -17,30 +17,33 @@
         <form action="{% url 'VehAdd' %}" method="POST">
             {% csrf_token %}
 
-            <div class="container">
+            <div class="container container-md-6">
                 <div class="row form-group">
-                    <div class="col col-sm-4">
-                        <label for="id_username">MARCA:</label>
+                    <div class="col col-xl-6 col-8">
+                        <strong><label for="id_username">MARCA:</label></strong>
                         {{ form.brand }}
                     </div>
-                    <div class="col col-sm-4">
-                        <label for="id_cpf">MODELO:</label>
+                    <div class="col col-xl-6 col-8">
+                        <strong><label for="id_cpf">MODELO:</label></strong>
                         {{ form.model }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-sm-4">
-                        <label for="id_enrollment">PLACA:</label>
+                    <div class="col col-xl-6 col-8">
+                        <strong><label for="id_enrollment">PLACA:</label></strong>
+                        
                         {{ form.plate }}
                     </div>
-                    <div class="col col-sm-4">
-                        <label for="id_email">COR:</label>
+                    <div class="col col-xl-6 col-8">
+                       <strong><label for="id_email">COR:</label></strong>
+                
                         {{ form.color }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-sm-4">
-                        <label for="id_phone">DONO:</label>
+                    <div class="col col-xl-6 col-8">
+                        <strong><label for="id_phone">DONO:</label></strong>
+                        
                         {{ form.user }}
                     </div>
                 </div>
@@ -56,6 +59,7 @@
                 <button type="submit" class="btn btn-secondary btn-lg">SALVAR</button>
                 <button type="reset" class="btn btn-secondary btn-lg">LIMPAR</button>
                 <a href="{% url 'VehList' %}" class="btn btn-secondary btn-lg">VOLTAR</a>
+            </div>
         </form>
     </div>
 </div>

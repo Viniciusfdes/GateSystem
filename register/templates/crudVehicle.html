@@ -56,8 +56,8 @@
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <a href=""
-                                                onclick="return confirm('Tem certeza que deseja excluir esse usuário?')">
+                                            <a href="{% url 'VehRemove' veh.id %}"
+                                                onclick="return confirm('Tem certeza que deseja excluir esse veículo?')">
                                                 <img src="{% static 'crudVehicle/img/TrashSVG.svg' %}" alt="">
                                             </a>
                                         </div>
