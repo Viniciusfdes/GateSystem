@@ -99,7 +99,7 @@ h5{
 }
 
 .table-scroll {
-   max-height:400px;
+   max-height:700px;
    overflow-y:auto;
 }
 
@@ -113,4 +113,8 @@ form {
 
 .form-group {
    margin-bottom: 40px;
+}
+
+.labels {
+   font-weight: bold;
 }

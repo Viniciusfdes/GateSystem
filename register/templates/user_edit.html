@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block 'head' %}
-<link rel="stylesheet" href="{% static 'crudUser/css/styleUser.css' %}">
+<link rel="stylesheet" href="{% static 'user_edit/css/user_edit.css' %}">
+<script src="{% static 'user_edit/js/user_edit.js' %}"></script>
 {% endblock %}
 {% block 'title' %}
 <title>NADIC | USER_EDIT</title>
@@ -18,50 +19,52 @@
     </li>
 </ul>
 
-<h5>Editar Usuário</h5>
-<hr>
-<form action="{% url 'UserEdit' user_obj.id %}" method="POST">
-    {% csrf_token %}
-    
-    <div class="container">
-        <div class="row form-group">
-            <div class="col col-sm-4">
-                <label for="id_username">USUÁRIO:</label>
-                {{ form.username}}
-            </div>
-            <div class="col col-sm-4">
-                <label for="id_cpf">CPF:</label>
-                {{ form.cpf}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-sm-4">
-                <label for="id_enrollment">MATRÍCULA:</label>
-                {{ form.enrollment}}
-            </div>
-            <div class="col col-sm-4">
-                <label for="id_email">EMAIL:</label>
-                {{ form.email}}
-            </div>
-        </div>
-        <div class="row form-group">
-            <div class="col col-sm-4">
-                <label for="id_phone">TELEFONE:</label>
-                {{ form.phone}}
-            </div>
-        </div>
+<div class="card">
+    <div class="card-body">
+        <h5>Editar Usuário</h5>
+        <hr>
+        <form action="{% url 'UserEdit' user_obj.id %}" method="POST" style="padding-bottom: 0px;">
+            {% csrf_token %}
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {{message.tags}}">
-        {{message}}
+            <div class="container">
+                <div class="row form-group">
+                    <div class="col col-sm-4">
+                        <label for="id_username" class="labels">USUÁRIO:</label>
+                        {{ form.username}}
+                    </div>
+                    <div class="col col-sm-4">
+                        <label for="id_cpf" class="labels">CPF:</label>
+                        {{ form.cpf}}
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-sm-4">
+                        <label for="id_enrollment" class="labels">MATRÍCULA:</label>
+                        {{ form.enrollment}}
+                    </div>
+                    <div class="col col-sm-4">
+                        <label for="id_email" class="labels">EMAIL:</label>
+                        {{ form.email}}
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-sm-4">
+                        <label for="id_phone" class="labels">TELEFONE:</label>
+                        {{ form.phone}}
+                    </div>
+                </div>
+
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert {{message.tags}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <button type="submit" class="btn btn-secondary">SALVAR</button>
+                <a href="{% url 'UserList' %}" class="btn btn-secondary">CANCELAR</a>
+        </form>
     </div>
-    {% endfor %}
-    {% endif %}
-
-    <button type="submit" class="btn btn-secondary">SALVAR</button>
-    <a href="{% url 'UserList' %}" class="btn btn-secondary">CANCELAR</a>
-</form>
-</div>
 </div>
 {% endblock %}

@@ -10,7 +10,7 @@ from validate_docbr import CPF
 #Usuário
 def user_list(request):
     users = user.objects.all()
-    template_name = 'crudUser.html'
+    template_name = 'user_list.html'
     context = {
         'users': users,
     }
@@ -106,7 +106,7 @@ def user_remove(request, user_pk):
 #Automóvel
 def veh_list(request):
     vehs = vehicle.objects.all()
-    template_name = 'crudVehicle.html'
+    template_name = 'veh_list.html'
     context = {
         'vehs': vehs
     }
@@ -128,23 +128,34 @@ def veh_add(request):
                 messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
                 return redirect('/reg/veh_add')
             else:
-                # Verifica se os valores já estão cadastrados e, caso não estejam, salva os valores no banco de dados
-                veh_filter_plate = vehicle.objects.filter(plate = veh_plate)
+                if len(veh_plate) == 7:
+                    #Verificar se a posição dos caracteres está correta, ou seja, letras e números no seu devido lugar.
+                    for i, item in len(veh_plate):
+                        if item.isalpha() and (i == 0 or i == 1 or i == 2 or i ==4):
+                            contLetra += 1
+                        elif item.isdigit() and (i == 3 or i == 4 or i == 5 or i == 6):
+                            contNum += 1
+               
+                if (contLetra == 3 and contNum == 4) or (contLetra == 4 and contNum == 3):
+                    #Caso a placa seja válida, insere ela na Lista de placas válidas.
+                
+                    # Verifica se os valores já estão cadastrados e, caso não estejam, salva os valores no banco de dados
+                    veh_filter_plate = vehicle.objects.filter(plate = veh_plate)
 
-                if veh_filter_plate.exists():
-                    messages.add_message(request, constants.ERROR, 'Placa já cadastrada')
-                    return redirect('/reg/veh_add')
-                else:
-                    try:
-                        form.save()
-                        messages.add_message(request, constants.SUCCESS, 'Veículo cadastrado')
+                    if veh_filter_plate.exists():
+                        messages.add_message(request, constants.ERROR, 'Placa já cadastrada')
                         return redirect('/reg/veh_add')
-                    except:
-                        pass
+                    else:
+                        try:
+                            form.save()
+                            messages.add_message(request, constants.SUCCESS, 'Veículo cadastrado')
+                            return redirect('/reg/veh_add')
+                        except:
+                            pass
     else:
         form = FormVeh()
                     
-    template_name = 'vehicle_add.html'
+    template_name = 'veh_add.html'
     context = {
         'form': form
     }
@@ -163,7 +174,7 @@ def veh_edit(request, vehicle_pk):
                     except:
                         pass
 
-    template_name = 'vehicle_edit.html'
+    template_name = 'veh_edit.html'
     context = {
         'veh_obj': veh_obj,
         'form': form

@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'head' %}<link rel="stylesheet" href="{% static 'crudVehicle/css/styleVeh.css' %}">{% endblock %}
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'veh_list/css/veh_list.css' %}">
+<script src="{% static 'veh_list/js/veh_list.js' %}"></script>
+{% endblock %}
 {% block 'title' %}<title>NADIC | VEHICLE</title>{% endblock %}
 
 {% block 'body' %}

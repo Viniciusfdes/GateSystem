@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
-<link rel="stylesheet" href="{% static 'crudVehicle/css/styleVeh.css' %}">
+<link rel="stylesheet" href="{% static 'veh_add/css/veh_add.css' %}">
 {% endblock %}
 
 {% block 'title' %}
@@ -14,36 +14,36 @@
     <div class="card-body">
         <h4>Cadastrar Veículos</h4>
         <hr>
-        <form action="{% url 'VehAdd' %}" method="POST">
+        <form action="{% url 'VehAdd' %}" method="POST" style="padding-bottom: 0px;">
             {% csrf_token %}
 
             <div class="container container-md-6">
                 <div class="row form-group">
                     <div class="col col-xl-6 col-8">
-                        <strong><label for="id_username">MARCA:</label></strong>
+                        <label for="id_username" class="labels">MARCA:</label>
                         {{ form.brand }}
                     </div>
                     <div class="col col-xl-6 col-8">
-                        <strong><label for="id_cpf">MODELO:</label></strong>
+                        <label for="id_cpf" class="labels">MODELO:</label>
                         {{ form.model }}
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-xl-6 col-8">
-                        <strong><label for="id_enrollment">PLACA:</label></strong>
-                        
+                        <label for="id_enrollment" class="labels">PLACA:</label>
+
                         {{ form.plate }}
                     </div>
                     <div class="col col-xl-6 col-8">
-                       <strong><label for="id_email">COR:</label></strong>
-                
+                        <label for="id_email" class="labels">COR:</label>
+
                         {{ form.color }}
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-xl-6 col-8">
-                        <strong><label for="id_phone">DONO:</label></strong>
-                        
+                        <label for="id_phone" class="labels">DONO:</label>
+
                         {{ form.user }}
                     </div>
                 </div>
