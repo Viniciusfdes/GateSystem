@@ -10,45 +10,36 @@
 {% endblock %}
 
 {% block 'body' %}
-<ul class="nav nav-tabs" style="margin-bottom: 24px;">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{% url 'UserList' %}">Usuário</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
-    </li>
-</ul>
-
 <div class="card">
     <div class="card-body">
-        <h5>Editar Usuário</h5>
+        <h5>Editar usuário</h5>
         <hr>
         <form action="{% url 'UserEdit' user_obj.id %}" method="POST" style="padding-bottom: 0px;">
             {% csrf_token %}
 
             <div class="container">
                 <div class="row form-group">
-                    <div class="col col-sm-4">
+                    <div class="col-12 col-lg-4" style="margin-right: 50px;">
                         <label for="id_username" class="labels">USUÁRIO:</label>
                         {{ form.username}}
                     </div>
-                    <div class="col col-sm-4">
+                    <div class="col-12 col-lg-4">
                         <label for="id_cpf" class="labels">CPF:</label>
                         {{ form.cpf}}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-sm-4">
+                    <div class="col-12 col-lg-4" style="margin-right: 50px;">
                         <label for="id_enrollment" class="labels">MATRÍCULA:</label>
                         {{ form.enrollment}}
                     </div>
-                    <div class="col col-sm-4">
+                    <div class="col-12 col-lg-4">
                         <label for="id_email" class="labels">EMAIL:</label>
                         {{ form.email}}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-sm-4">
+                    <div class="col-12 col-lg-4">
                         <label for="id_phone" class="labels">TELEFONE:</label>
                         {{ form.phone}}
                     </div>

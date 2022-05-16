@@ -13,7 +13,7 @@
         <a class="nav-link active"  href="{% url 'UserList' %}">Usuário</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Automóvel</a>
+        <a class="nav-link" href="{% url 'VehList' %}" style="color:#333333;">Veículo</a>
     </li>
 </ul>
 
@@ -51,17 +51,17 @@
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
                             <td>
-                                <div class="container">
+                                <div class="container" style="padding: 0px;">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <a href="{% url 'UserEdit' user.id %}">
-                                                <img src="{% static 'crudUser/img/EditSVG.svg' %}" alt="">
+                                                <img src="{% static 'user_list/img/EditSVG.svg' %}" alt="">
                                             </a>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             <a href="{% url 'UserRemove' user.id %}"
                                                 onclick="return confirm('Tem certeza que deseja excluir esse usuário?')">
-                                                <img src="{% static 'crudUser/img/TrashSVG.svg' %}" alt="">
+                                                <img src="{% static 'user_list/img/TrashSVG.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>

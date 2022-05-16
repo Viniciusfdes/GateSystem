@@ -12,38 +12,35 @@
 {% block 'body' %}
 <div class="card">
     <div class="card-body">
-        <h4>Cadastrar Veículos</h4>
+        <h4>Cadastrar veículo</h4>
         <hr>
         <form action="{% url 'VehAdd' %}" method="POST" style="padding-bottom: 0px;">
             {% csrf_token %}
 
-            <div class="container container-md-6">
+            <div class="container">
                 <div class="row form-group">
-                    <div class="col col-xl-6 col-8">
+                    <div class="col-12 col-lg-5">
                         <label for="id_username" class="labels">MARCA:</label>
                         {{ form.brand }}
                     </div>
-                    <div class="col col-xl-6 col-8">
+                    <div class="col-12 col-lg-5">
                         <label for="id_cpf" class="labels">MODELO:</label>
                         {{ form.model }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-xl-6 col-8">
+                    <div class="col-12 col-lg-5">
                         <label for="id_enrollment" class="labels">PLACA:</label>
-
                         {{ form.plate }}
                     </div>
-                    <div class="col col-xl-6 col-8">
+                    <div class="col-12 col-lg-5">
                         <label for="id_email" class="labels">COR:</label>
-
                         {{ form.color }}
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-xl-6 col-8">
+                    <div class="col-12 col-lg-5">
                         <label for="id_phone" class="labels">DONO:</label>
-
                         {{ form.user }}
                     </div>
                 </div>
