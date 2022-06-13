@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends "layout/base.html" %}
 {% load static %}
 
 {% block 'head' %}
-<link rel="stylesheet" href="{% static 'veh_add/css/veh_add.css' %}">
+<link rel="stylesheet" href="{% static 'css/veh_add.css' %}">
 {% endblock %}
 
 {% block 'title' %}
@@ -40,7 +40,7 @@
                 </div>
                 <div class="row form-group">
                     <div class="col-12 col-lg-5">
-                        <label for="id_phone" class="labels">DONO:</label>
+                        <label for="id_phone" class="labels">PROPRIETÁRIO:</label>
                         {{ form.user }}
                     </div>
                 </div>

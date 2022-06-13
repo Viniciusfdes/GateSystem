@@ -7,7 +7,8 @@ from validate_docbr import CPF
 
 #------------------------------------------------------------------------------------
 
-#Usuário
+#1.0 Usuário
+#1.1 Tela INICIAL da área usuário
 def user_list(request):
     users = user.objects.all()
     template_name = 'user_list.html'
@@ -17,6 +18,7 @@ def user_list(request):
 
     return render(request, template_name, context)
 
+#1.2 Tela de CADASTRO da área usuário
 def user_add(request):
     if request.POST:
         form = FormUser(request.POST or None)
@@ -33,7 +35,6 @@ def user_add(request):
                 return redirect('/reg/user_add')
             else:
                 #Verifica se o CPF é válido através de uma biblioteca 'pip install validate docbr'
-
                 cpf = CPF()
                 if cpf.validate(user_cpf) == False:
                     messages.add_message(request, constants.ERROR, 'CPF não validado')
@@ -75,17 +76,29 @@ def user_add(request):
     
     return render(request, template_name, context)
 
+#1.3 Tela de EDIÇÃO da área usuário
 def user_edit(request, user_pk):
     user_obj = user.objects.get(pk = user_pk)
     form = FormUser(request.POST or None, instance = user_obj)
     
     if request.POST:
         if form.is_valid():
-                    try:
-                        form.save()
-                        return redirect('/reg/user')
-                    except:
-                        pass
+            user_username = request.POST.get('username')
+            user_cpf = request.POST.get('cpf')
+            user_enrollment = request.POST.get('enrollment')
+            user_email = request.POST.get('email')
+            user_phone = request.POST.get('phone')
+
+            #Verifica preenchimento dos campos
+            if len(user_username.strip()) == 0 or len(user_cpf.strip()) == 0 or len(user_enrollment.strip()) == 0 or len(user_email.strip()) == 0 or len(user_phone.strip()) == 0:
+                messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
+                return redirect('/reg/user_add')
+            else:
+                try:
+                    form.save()
+                    return redirect('/reg/user_edit')
+                except:
+                    pass
 
     template_name = 'user_edit.html'
     context = {
@@ -95,7 +108,8 @@ def user_edit(request, user_pk):
 
     return render(request, template_name, context)
 
-def user_remove(request, user_pk):
+#1.4 Função remove da área usuário
+def user_remove(user_pk):
     user_obj = user.objects.get(pk = user_pk)
     user_obj.delete()
 
@@ -103,7 +117,8 @@ def user_remove(request, user_pk):
 
 #------------------------------------------------------------------------------------
 
-#Automóvel
+#2.0 Automóvel
+#2.1 Tela INICIAL da área Automóvel
 def veh_list(request):
     vehs = vehicle.objects.all()
     template_name = 'veh_list.html'
@@ -113,6 +128,7 @@ def veh_list(request):
 
     return render(request, template_name, context)
 
+#2.2 Tela de CADASTRO da área Automóvel
 def veh_add(request):
     if request.POST:
         form = FormVeh(request.POST or None)
@@ -121,37 +137,26 @@ def veh_add(request):
             veh_model = request.POST.get('model')
             veh_plate = request.POST.get('plate')
             veh_color = request.POST.get('color')
+            veh_owner = request.POST.get('user')
             print(f"{veh_brand} | {veh_model} | {veh_plate} | {veh_plate} | {veh_color}")
 
             #Verifica preenchimento dos campos
-            if len(veh_brand.strip()) == 0 or len(veh_model.strip()) == 0 or len(veh_plate.strip()) == 0 or len(veh_color.strip()) == 0:
+            if len(veh_brand.strip()) == 0 or len(veh_model.strip()) == 0 or len(veh_plate.strip()) == 0 or len(veh_color.strip()) == 0 or len(veh_owner) == 0:
                 messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
                 return redirect('/reg/veh_add')
             else:
-                if len(veh_plate) == 7:
-                    #Verificar se a posição dos caracteres está correta, ou seja, letras e números no seu devido lugar.
-                    for i, item in len(veh_plate):
-                        if item.isalpha() and (i == 0 or i == 1 or i == 2 or i ==4):
-                            contLetra += 1
-                        elif item.isdigit() and (i == 3 or i == 4 or i == 5 or i == 6):
-                            contNum += 1
-               
-                if (contLetra == 3 and contNum == 4) or (contLetra == 4 and contNum == 3):
-                    #Caso a placa seja válida, insere ela na Lista de placas válidas.
-                
-                    # Verifica se os valores já estão cadastrados e, caso não estejam, salva os valores no banco de dados
-                    veh_filter_plate = vehicle.objects.filter(plate = veh_plate)
+                veh_filter_plate = vehicle.objects.filter(plate = veh_plate)
 
-                    if veh_filter_plate.exists():
-                        messages.add_message(request, constants.ERROR, 'Placa já cadastrada')
+                if veh_filter_plate.exists():
+                    messages.add_message(request, constants.ERROR, 'Placa já cadastrada')
+                    return redirect('/reg/veh_add')
+                else:
+                    try:
+                        form.save()
+                        messages.add_message(request, constants.SUCCESS, 'Veículo cadastrado')
                         return redirect('/reg/veh_add')
-                    else:
-                        try:
-                            form.save()
-                            messages.add_message(request, constants.SUCCESS, 'Veículo cadastrado')
-                            return redirect('/reg/veh_add')
-                        except:
-                            pass
+                    except:
+                        pass
     else:
         form = FormVeh()
                     
@@ -162,17 +167,34 @@ def veh_add(request):
     
     return render(request, template_name, context)
 
+#2.3 Tela de EDIÇÃO da área Automóvel
 def veh_edit(request, vehicle_pk):
     veh_obj = vehicle.objects.get(pk = vehicle_pk)
     form = FormVeh(request.POST or None, instance = veh_obj)
     
     if request.POST:
         if form.is_valid():
-                    try:
-                        form.save()
-                        return redirect('/reg/veh')
-                    except:
-                        pass
+            veh_brand = request.POST.get('brand')
+            veh_model = request.POST.get('model')
+            veh_plate = request.POST.get('plate')
+            veh_color = request.POST.get('color')
+            veh_owner = request.POST.get('user')
+
+            #Verifica preenchimento dos campos
+            if len(veh_brand.strip()) == 0 or len(veh_model.strip()) == 0 or len(veh_plate.strip()) == 0 or len(veh_color.strip()) == 0 or len(veh_owner) == 0:
+                messages.add_message(request, constants.ERROR, 'Preencha todos os campos')
+                return redirect('/reg/veh_add')
+            else:
+                veh_filter_plate = vehicle.objects.filter(plate = veh_plate)
+                if veh_filter_plate.exists():
+                    messages.add_message(request, constants.ERROR, 'Placa já cadastrada')
+                    return redirect('/reg/veh_add')
+
+                try:
+                    form.save()
+                    return redirect('/reg/veh')
+                except:
+                    pass
 
     template_name = 'veh_edit.html'
     context = {
@@ -182,7 +204,8 @@ def veh_edit(request, vehicle_pk):
 
     return render(request, template_name, context)
 
-def veh_remove(request, vehicle_pk):
+#2.4 Função remove da área Automóvel
+def veh_remove(vehicle_pk):
     veh_obj = vehicle.objects.get(pk = vehicle_pk)
     veh_obj.delete()
 

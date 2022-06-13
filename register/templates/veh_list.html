@@ -1,9 +1,9 @@
-{% extends 'base.html' %}
+{% extends "layout/base.html" %}
 {% load static %}
 
 {% block 'head' %}
-<link rel="stylesheet" href="{% static 'veh_list/css/veh_list.css' %}">
-<script src="{% static 'veh_list/js/veh_list.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/veh_list.css' %}">
+<script src="{% static 'js/veh_list.js' %}"></script>
 {% endblock %}
 {% block 'title' %}<title>NADIC | VEHICLE</title>{% endblock %}
 
@@ -55,13 +55,13 @@
                                     <div class="row">
                                         <div class="col">
                                             <a href="{% url 'VehEdit' veh.id %}">
-                                                <img src="{% static 'veh_list/img/EditSVG.svg' %}" alt="">
+                                                <img src="{% static 'img/EditSVG.svg' %}" alt="">
                                             </a>
                                         </div>
                                         <div class="col">
                                             <a href="{% url 'VehRemove' veh.id %}"
                                                 onclick="return confirm('Tem certeza que deseja excluir esse veículo?')">
-                                                <img src="{% static 'veh_list/img/TrashSVG.svg' %}" alt="">
+                                                <img src="{% static 'img/TrashSVG.svg' %}" alt="">
                                             </a>
                                         </div>
                                     </div>
